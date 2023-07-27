@@ -2,17 +2,21 @@ import { homeUrl } from '@/config/constants';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import CategoriesDropdown from './components/CategoriesDropdown';
-import { AiOutlineDesktop } from 'react-icons/ai'
+import { AiOutlineDesktop, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import classNames from 'classnames';
+import MobileMenu from './components/MobileMenu';
 
 const linkCls = 'text-white hover:text-primary-100 trans'
 
 const Header = () => {
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
-    };
+    // states
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+    const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
+
 
     return (
         <nav className="bg-secondary-300 py-3.5">
@@ -36,15 +40,30 @@ const Header = () => {
                         <Link href="#" className={classNames(linkCls)}>Contact</Link>
                     </div>
 
-                    {/* Hamburger menu for mobile */}
-                    <div className="md:hidden">
-                        <button onClick={toggleDropdown} className="text-white">
-                            hi
+                    {/* Mobile menu (hamburger) */}
+                    <div className="md:hidden relative top-[3px]">
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="text-white focus:outline-none"
+                        >
+                            {isMobileMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
                         </button>
                     </div>
+
                 </div>
             </div>
 
+
+            {/* mobile navbar menu */}
+            <div
+                className={`navbar-menu relative md:z-[99] z-[999] lg:hidden ${isMobileMenuOpen ? "block" : "hidden"
+                    }`}
+            >
+                <MobileMenu
+                    setShowSideNav={setMobileMenuOpen}
+                    showSideNav={isMobileMenuOpen}
+                />
+            </div>
         </nav>
     );
 };
