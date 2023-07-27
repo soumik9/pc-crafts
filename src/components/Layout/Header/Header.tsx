@@ -24,7 +24,7 @@ const Header = () => {
                 <div className="flex items-center justify-between">
 
                     <Link href={homeUrl} className="text-white font-semibold text-lg flex items-center gap-2">
-                        <AiOutlineDesktop className='relative top-[1px]' />
+                        <AiOutlineDesktop className='relative top-[1px] text-[24px]' />
                         PC Crafts
                     </Link>
 
