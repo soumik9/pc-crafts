@@ -1,17 +1,19 @@
 import Layout from '@/components/Layout/Layout';
 import type { ReactElement } from 'react';
 import { NextPageWithLayout } from '../_app';
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import SearchByCategory from '@/views/SearchByCategory/SearchByCategory';
+import { IProduct } from '@/config/type';
 
 type PageProps = {
-    categoryQuery: string;
+    products: IProduct[];
 }
 
-const CategoryBasePage: NextPageWithLayout<PageProps> = ({ categoryQuery }) => {
-    console.log(categoryQuery);
+const CategoryBasePage: NextPageWithLayout<PageProps> = ({ products }) => {
+    console.log(products, 'dd');
     return (
         <main>
-
+            <SearchByCategory />
         </main>
     );
 };
@@ -22,32 +24,38 @@ CategoryBasePage.getLayout = function getLayout(page: ReactElement) {
     return <Layout>{page}</Layout>;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { search } = context.query; // Get the searchId from the query parameters
+export const getStaticPaths: GetStaticPaths = async () => {
+
+    const res = await fetch('https://pc-craft-server.vercel.app/api/v1/products')
+    const products = await res.json()
+
+    const paths = products.data.map((product: IProduct) => ({
+        params: { search: product.categorySlug },
+    }))
+
+    return { paths, fallback: false }
+};
+
+
+export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
+    const { params } = context;
+
+    if (!params || !params.search) {
+        return {
+            notFound: true,
+        };
+    }
+
+    // Destructure the 'search' parameter from 'params'
+    const { search } = params;
+
+    // Now you can use the 'search' parameter to fetch products based on the categorySlug
+    const resP = await fetch(`https://pc-craft-server.vercel.app/api/v1/products?categorySlug=${search}`);
+    const products = await resP.json();
 
     return {
         props: {
-            categoryQuery: search,
-        },
+            products: products.data,
+        }
     };
 };
-
-// export const getStaticProps: GetStaticProps<{
-//   products: IProduct[]
-// }> = async () => {
-
-//   // products data fetching
-//   const resP = await fetch('https://pc-craft-server.vercel.app/api/v1/products')
-//   const products = await resP.json();
-
-//   // categories data fetching
-//   const resC = await fetch('https://pc-craft-server.vercel.app/api/v1/categories')
-//   const categories = await resC.json();
-
-//   return {
-//     props: {
-//       products: products.data,
-//       categories: categories.data,
-//     }
-//   }
-// }
