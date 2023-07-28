@@ -1,0 +1,47 @@
+[
+    {
+        "_id": "cpu_1",
+        "name": "CPU / Processor",
+        "isFeatured": true
+    },
+    {
+        "_id": "motherboard_1",
+        "name": "Motherboard",
+        "isFeatured": false
+    },
+    {
+        "_id": "ram_1",
+        "name": "RAM",
+        "isFeatured": true
+    },
+    {
+        "_id": "psu_1",
+        "name": "Power Supply Unit",
+        "isFeatured": true
+    },
+    {
+        "_id": "storage_1",
+        "name": "Storage Device",
+        "isFeatured": false
+    },
+    {
+        "_id": "monitor_1",
+        "name": "Monitor",
+        "isFeatured": false
+    },
+    {
+        "_id": "gpu_1",
+        "name": "GPU",
+        "isFeatured": true
+    },
+    {
+        "_id": "mouse_1",
+        "name": "Mouse",
+        "isFeatured": false
+    },
+    {
+        "_id": "keyboard_1",
+        "name": "Keyboard",
+        "isFeatured": true
+    }
+]
