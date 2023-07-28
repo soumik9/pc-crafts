@@ -17,12 +17,19 @@ export interface IProduct {
     };
     individualRating: number;
     averageRating: number;
-    reviews: Review[];
+    reviews: IReview[];
     isFeatured: boolean;
 }
 
-export interface Review {
+export interface IReview {
     user: string;
     rating: number;
     comment: string;
+}
+
+export interface ICategory {
+    _id?: string;
+    name: string;
+    slug: string;
+    isFeatured: boolean;
 }

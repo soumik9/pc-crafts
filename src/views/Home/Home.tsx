@@ -3,18 +3,19 @@ import React from 'react'
 import Banner from './components/Banner'
 import FeaturedProducts from './components/FeaturedProducts'
 import FeaturedCategories from './components/FeaturedCategories'
-import { IProduct } from '@/config/type'
+import { ICategory, IProduct } from '@/config/type'
 
 interface Props {
     products: IProduct[];
+    categories: ICategory[];
 }
 
-const Home = ({ products }: Props) => {
+const Home = ({ products, categories }: Props) => {
     return (
         <>
             <Banner />
             <FeaturedProducts products={products} />
-            <FeaturedCategories />
+            <FeaturedCategories categories={categories} />
         </>
     )
 }

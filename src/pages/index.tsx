@@ -3,16 +3,17 @@ import { NextPageWithLayout } from './_app';
 import Layout from '@/components/Layout/Layout';
 import type { ReactElement } from 'react';
 import { GetStaticProps } from 'next';
-import { IProduct } from '@/config/type';
+import { ICategory, IProduct } from '@/config/type';
 
 type PageProps = {
   products: IProduct[];
+  categories: ICategory[];
 }
 
-const HomePage: NextPageWithLayout<PageProps> = ({ products }) => {
+const HomePage: NextPageWithLayout<PageProps> = ({ products, categories }) => {
   return (
     <main>
-      <Home products={products} />
+      <Home products={products} categories={categories} />
     </main>
   );
 };
@@ -26,7 +27,19 @@ HomePage.getLayout = function getLayout(page: ReactElement) {
 export const getStaticProps: GetStaticProps<{
   products: IProduct[]
 }> = async () => {
-  const res = await fetch('https://pc-craft-server.vercel.app/api/v1/products')
-  const data = await res.json();
-  return { props: { products: data.data } }
+
+  // products data fetching
+  const resP = await fetch('https://pc-craft-server.vercel.app/api/v1/products')
+  const products = await resP.json();
+
+  // categories data fetching
+  const resC = await fetch('https://pc-craft-server.vercel.app/api/v1/categories')
+  const categories = await resC.json();
+
+  return {
+    props: {
+      products: products.data,
+      categories: categories.data,
+    }
+  }
 }
