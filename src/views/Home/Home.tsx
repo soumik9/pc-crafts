@@ -13,7 +13,7 @@ const Home = ({ products }: Props) => {
     return (
         <>
             <Banner />
-            <FeaturedProducts />
+            <FeaturedProducts products={products} />
             <FeaturedCategories />
         </>
     )
