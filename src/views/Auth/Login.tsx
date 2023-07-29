@@ -4,17 +4,14 @@ import { AiFillGithub, AiOutlineArrowRight } from 'react-icons/ai'
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FcGoogle } from 'react-icons/fc'
 import { signIn } from 'next-auth/react'
-
-type Props = {}
 
 const validationSchema = yup.object().shape({
     email: yup.string().required('Email is required').email('Invalid email'),
     password: yup.string().required('Password is required').min(6, 'Password must be at least 6 characters'),
 });
 
-const Login = (props: Props) => {
+const Login: React.FC = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
 
@@ -34,7 +31,9 @@ const Login = (props: Props) => {
 
                             <div className='mt-4 f-center gap-5 border-b pb-3.5'>
                                 {/* <button type='button' className='text-[40px]'><FcGoogle /></button> */}
-                                <button type='button' className='text-[40px]' onClick={() => signIn("github")}><AiFillGithub /></button>
+                                <button type='button' className='text-[40px]' onClick={() => {
+                                    signIn("github");
+                                }}><AiFillGithub /></button>
                             </div>
 
                             <form onSubmit={handleSubmit(handleLogin)} className="mt-4 opacity-50 cursor-not-allowed">

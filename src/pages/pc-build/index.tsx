@@ -2,6 +2,7 @@ import { NextPageWithLayout } from '../_app';
 import PCBuild from '@/views/PCBuild/PCBuild';
 import { GetServerSideProps } from 'next';
 import { ICategory } from '@/config/type';
+import ProtectedRoute from '@/components/ProctectedRouter/ProtectedRoute';
 
 type PageProps = {
     // products: IProduct[];
@@ -11,7 +12,9 @@ type PageProps = {
 const PcBuildPage: NextPageWithLayout<PageProps> = ({ categories }) => {
     return (
         <main>
-            <PCBuild categories={categories} />
+            <ProtectedRoute>
+                <PCBuild categories={categories} />
+            </ProtectedRoute>
         </main>
     );
 };
