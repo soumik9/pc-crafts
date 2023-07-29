@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             <div className="container">
                 <div className="flex items-center justify-between">
 
-                    <Link href={homeUrl} className="text-white font-semibold text-lg flex items-center gap-2">
+                    <Link href={homeUrl} className="text-white font-semibold text-lg flex items-center gap-2 uppercase">
                         <AiOutlineDesktop className='relative top-[1px] text-[24px]' />
                         PC Crafts
                     </Link>
