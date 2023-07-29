@@ -16,8 +16,6 @@ const validationSchema = yup.object().shape({
 
 const Login = (props: Props) => {
 
-    console.log(process.env.NEXT_PUBLIC_GITHUB_ID);
-
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(validationSchema) });
 
     const handleLogin = (data: any) => {
