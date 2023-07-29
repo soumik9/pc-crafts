@@ -33,11 +33,11 @@ const Login = (props: Props) => {
                             <h2 className="text-2xl font-semibold text-center border-b pb-2">Login</h2>
 
                             <div className='mt-4 f-center gap-5 border-b pb-3.5'>
-                                <button type='button' className='text-[40px]'><FcGoogle /></button>
+                                {/* <button type='button' className='text-[40px]'><FcGoogle /></button> */}
                                 <button type='button' className='text-[40px]' onClick={() => signIn("github")}><AiFillGithub /></button>
                             </div>
 
-                            <form onSubmit={handleSubmit(handleLogin)} className="mt-4">
+                            <form onSubmit={handleSubmit(handleLogin)} className="mt-4 opacity-50 cursor-not-allowed">
                                 <div className="mb-4">
                                     <label htmlFor="email" className="block text-gray-700">Email</label>
                                     <input
@@ -45,6 +45,7 @@ const Login = (props: Props) => {
                                         id="email"
                                         {...register('email')}
                                         className="w-full px-4 py-2 mt-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                                        disabled
                                     />
                                     {errors.email && <p className="mt-1 text-red-500">{errors.email.message}</p>}
                                 </div>
@@ -55,6 +56,7 @@ const Login = (props: Props) => {
                                         id="password"
                                         {...register('password')}
                                         className="w-full px-4 py-2 mt-2 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                                        disabled
                                     />
                                     {errors.password && <p className="mt-1 text-red-500">{errors.password.message}</p>}
                                 </div>
@@ -67,6 +69,7 @@ const Login = (props: Props) => {
                                     </div>}
                                     classes='w-full py-3'
                                     type='submit'
+                                    disabled
                                 />
 
                             </form>
