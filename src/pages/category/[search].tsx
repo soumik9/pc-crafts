@@ -7,13 +7,14 @@ import { IProduct } from '@/config/type';
 
 type PageProps = {
     products: IProduct[];
+    search?: any;
 }
 
-const CategoryBasePage: NextPageWithLayout<PageProps> = ({ products }) => {
-    console.log(products, 'dd');
+const CategoryBasePage: NextPageWithLayout<PageProps> = ({ products, search }) => {
+
     return (
         <main>
-            <SearchByCategory />
+            <SearchByCategory products={products} search={search} />
         </main>
     );
 };
@@ -56,6 +57,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
     return {
         props: {
             products: products.data,
+            search: search ? search : '',
         }
     };
 };

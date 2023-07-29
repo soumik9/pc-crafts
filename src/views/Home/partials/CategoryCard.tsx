@@ -7,6 +7,7 @@ import { ImPower } from 'react-icons/im'
 import { FiMonitor } from 'react-icons/fi'
 import { CgPullClear } from 'react-icons/cg'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 type Props = {
     data: ICategory;
@@ -14,6 +15,9 @@ type Props = {
 }
 
 const CategoryCard = ({ data, index }: Props) => {
+
+    const router = useRouter();
+
     return (
         <Link href={`category/${data.slug}`} className="bg-white shadow-2xl rounded-b-3xl p-4 pb-6">
 
@@ -32,7 +36,13 @@ const CategoryCard = ({ data, index }: Props) => {
 
             </div>
             <div className="bg-primary-700  mt-6 p-2 hover:bg-primary rounded-2xl trans cursor-pointer  text-white text-center shadow-xl shadow-bg-primary-700">
-                <button className="lg:text-sm text-lg font-bold">Click to view</button>
+                <button
+                    type='button'
+                    onClick={() => router.push(`category/${data.slug}`)}
+                    className="lg:text-sm text-lg font-bold"
+                >
+                    Click to view
+                </button>
             </div>
         </Link>
     )

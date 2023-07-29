@@ -9,7 +9,7 @@
         "_id": "motherboard_1",
         "name": "Motherboard",
         "slug": "motherboard",
-        "isFeatured": false
+        "isFeatured": true
     },
     {
         "_id": "ram_1",
