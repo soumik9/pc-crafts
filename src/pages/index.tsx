@@ -20,10 +20,6 @@ const HomePage: NextPageWithLayout<PageProps> = ({ products, categories }) => {
 
 export default HomePage;
 
-HomePage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
-
 export const getStaticProps: GetStaticProps<{
   products: IProduct[]
 }> = async () => {

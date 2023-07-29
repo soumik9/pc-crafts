@@ -1,5 +1,3 @@
-import Layout from '@/components/Layout/Layout';
-import type { ReactElement } from 'react';
 import { NextPageWithLayout } from '../_app';
 import PCBuild from '@/views/PCBuild/PCBuild';
 import { GetServerSideProps } from 'next';
@@ -19,10 +17,6 @@ const PcBuildPage: NextPageWithLayout<PageProps> = ({ categories }) => {
 };
 
 export default PcBuildPage;
-
-PcBuildPage.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>;
-};
 
 export const getServerSideProps: GetServerSideProps<{
     categories: ICategory[]

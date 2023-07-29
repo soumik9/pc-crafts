@@ -1,5 +1,3 @@
-import Layout from '@/components/Layout/Layout';
-import type { ReactElement } from 'react';
 import { NextPageWithLayout } from '../_app';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import SearchByCategory from '@/views/SearchByCategory/SearchByCategory';
@@ -20,10 +18,6 @@ const CategoryBasePage: NextPageWithLayout<PageProps> = ({ products, search }) =
 };
 
 export default CategoryBasePage;
-
-CategoryBasePage.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>;
-};
 
 export const getStaticPaths: GetStaticPaths = async () => {
 

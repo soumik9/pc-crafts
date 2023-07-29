@@ -1,11 +1,14 @@
 import { homeUrl, logiinUrl, pcBuildUrl } from '@/config/constants';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CategoriesDropdown from './components/CategoriesDropdown';
 import { AiOutlineDesktop, AiOutlineMenu, AiOutlineClose, AiOutlineLogin } from 'react-icons/ai';
 import classNames from 'classnames';
 import MobileMenu from './components/MobileMenu';
 import { useRouter } from 'next/router';
+import { useSession } from "next-auth/react"
+import { BsChevronDown } from 'react-icons/bs';
+import ProfileDropdown from './components/ProfileDropdown';
 
 const linkCls = 'text-white hover:text-primary-100 trans'
 
@@ -13,12 +16,32 @@ const Header: React.FC = () => {
 
     // globals
     const router = useRouter();
+    const { data: session } = useSession();
 
     // states
+    const dropdownRef = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    // dropdown close
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     // handler
+    const toggleMenuDropdown = () => setIsOpen(!isOpen);
+
+    const handleClickOutside = (event: any) => {
+        // @ts-ignore
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
     const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
     const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
 
@@ -41,10 +64,19 @@ const Header: React.FC = () => {
                             {isDropdownOpen && <CategoriesDropdown />}
                         </div>
 
-                        <Link href={logiinUrl} className={classNames(linkCls, 'flex gap-2 items-center group')} onClick={() => setDropdownOpen(false)}>
+                        <Link href={logiinUrl} className={classNames(linkCls, 'flex gap-2 items-center group', session?.user?.email && 'hidden')} onClick={() => setDropdownOpen(false)}>
                             Login
                             <AiOutlineLogin className={classNames(linkCls, 'relative top-[1px] text-[20px] group-hover:text-primary-100')} />
                         </Link>
+
+
+                        {/* profile dropdown after login */}
+                        {session?.user?.email && <div className="inline-block relative cursor-pointer" ref={dropdownRef}>
+                            <div className="text-primary-100 hover:text-white trans flex items-center gap-2" onClick={toggleMenuDropdown}>
+                                {session.user.name || session.user.email} <BsChevronDown className='relative top-[1px]' />
+                            </div>
+                            {isOpen && <ProfileDropdown />}
+                        </div>}
 
                         <div>
                             <button

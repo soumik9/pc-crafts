@@ -1,5 +1,3 @@
-import Layout from '@/components/Layout/Layout';
-import type { ReactElement } from 'react';
 import { NextPageWithLayout } from '../_app';
 import ProductDetails from '@/views/ProductDetails/ProductDetails';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -18,10 +16,6 @@ const ProductDetailsPage: NextPageWithLayout<PageProps> = ({ product }) => {
 };
 
 export default ProductDetailsPage;
-
-ProductDetailsPage.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>;
-};
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
