@@ -34,14 +34,14 @@ const Header: React.FC = () => {
 
                     <div className="hidden md:flex md:items-center space-x-10">
 
-                        <Link href={homeUrl} className={classNames(linkCls)}>Home</Link>
+                        <Link href={homeUrl} className={classNames(linkCls)} onClick={() => setDropdownOpen(false)}>Home</Link>
 
                         <div className="relative">
                             <button onClick={toggleDropdown} className={classNames(linkCls)}>Categories</button>
                             {isDropdownOpen && <CategoriesDropdown />}
                         </div>
 
-                        <Link href="#" className={classNames(linkCls)}>Contact</Link>
+                        <Link href="#" className={classNames(linkCls)} onClick={() => setDropdownOpen(false)}>Contact</Link>
 
                         <div>
                             <button
