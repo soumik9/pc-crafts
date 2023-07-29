@@ -48,6 +48,9 @@ module.exports = {
         primary: ["Noto Sans", "sans-serif"],
         secondary: ["Alkatra", "cursive"],
       },
+      minHeight: {
+        'screen-minus': 'calc(100vh - 200px)',
+      },
     },
     screens: {
       xs: "375px",
