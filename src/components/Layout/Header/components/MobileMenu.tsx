@@ -1,11 +1,14 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { AiOutlineClose, AiOutlineDesktop } from 'react-icons/ai';
-import { homeUrl } from "@/config/constants";
+import { AiOutlineClose, AiOutlineDesktop, AiOutlineLogin } from 'react-icons/ai';
+import { homeUrl, logiinUrl } from "@/config/constants";
 import classNames from 'classnames';
 import CategoriesDropdown from "./CategoriesDropdown";
 import { FiChevronRight } from 'react-icons/fi'
+import { useSession, signOut } from 'next-auth/react';
+import Button from "@/components/Button/Button";
+import { BiLogOut } from "react-icons/bi";
 
 type Props = {
     setShowSideNav: (showSideNav: boolean) => void;
@@ -16,7 +19,9 @@ const linkCls = 'text-primary-800 text-[18px] font-medium'
 
 const MobileMenu = ({ setShowSideNav }: Props) => {
 
+    // global
     const router = useRouter();
+    const { data: session } = useSession();
 
     // states
     const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -54,6 +59,39 @@ const MobileMenu = ({ setShowSideNav }: Props) => {
 
                             <Link href="#" className={classNames(linkCls)}>Contact</Link>
                         </div>
+
+                        <div className="px-[40px] mt-5">
+                            <div className={classNames(
+                                session?.user?.email && 'hidden'
+                            )}>
+                                <Button
+                                    onClick={() => {
+                                        router.push(logiinUrl)
+                                        setDropdownOpen(false)
+                                    }}
+                                    classes="w-full flex justify-center"
+                                    text={<div className="flex items-center gap-2"> Login
+                                        <AiOutlineLogin className={classNames('relative top-[1px] text-[20px]')} /></div>} >
+                                </Button>
+                            </div>
+
+                            {session?.user?.email && <>
+
+                                <p className="mb-1.5">{session?.user?.name || session?.user?.email}</p>
+
+                                <Button
+                                    onClick={() => {
+                                        signOut()
+                                    }}
+                                    classes="w-full flex justify-center"
+                                    text={<div className="flex items-center gap-2"> Logout
+                                        <BiLogOut className={classNames('relative top-[1px] text-[20px] rotate-180')} /></div>} >
+                                </Button>
+
+                            </>}
+
+                        </div>
+
                     </div>
                 </nav>
 
