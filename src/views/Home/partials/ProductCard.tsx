@@ -24,11 +24,12 @@ const ProductCard = ({ data }: Props) => {
     const dispatch = useAppDispatch();
     const buildItems = useAppSelector((state) => state.pcBuild);
 
+    // checking is in build item
     const isProductInBuild = buildItems.some((item) => item.name === data.name);
 
     // handler
     const handleAddToBuilder = () => {
-        if (!isProductInBuild) {
+        if (!isProductInBuild || data.status === 'In Stock') {
             dispatch(addToPCBuild(data));
             router.push(pcBuildUrl);
         }
@@ -87,7 +88,7 @@ const ProductCard = ({ data }: Props) => {
                             </div>}
                             classes='w-full'
                             onClick={handleAddToBuilder}
-                            disabled={isProductInBuild}
+                            disabled={isProductInBuild || data.status !== 'In Stock'}
                             type='button'
                         />
                     </div>

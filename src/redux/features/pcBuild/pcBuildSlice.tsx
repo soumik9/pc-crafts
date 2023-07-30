@@ -17,8 +17,22 @@ const authSlice = createSlice({
                 state.push(action.payload);
             }
         },
+        removeFromPCBuild: (state, action: PayloadAction<string>) => {
+            const productIndex = state.findIndex((product) => product._id === action.payload);
+
+            if (productIndex !== -1) {
+                state.splice(productIndex, 1);
+                toast.success('Product removed from PC Build.');
+            } else {
+                toast.error('Product not found in the PC Build.');
+            }
+        },
+        clearPCBuild: (state) => {
+            state.splice(0, state.length);
+            toast.success('PC Build successfully completed.');
+        },
     }
 })
 
-export const { addToPCBuild } = authSlice.actions;
+export const { addToPCBuild, removeFromPCBuild, clearPCBuild } = authSlice.actions;
 export default authSlice.reducer;
