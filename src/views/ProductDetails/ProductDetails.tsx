@@ -43,7 +43,7 @@ const ProductDetails = ({ product }: Props) => {
                         </p>
 
                         <h1 className="lg:text-2xl md:text-xl text-[18px] font-semibold lg:leading-6 leading-7 text-gray-800 mt-5 flex items-center gap-2">
-                            {product.name}
+                            <span className='w-[70%]'>{product.name}</span>
                             <span>  <Rating style={{ maxWidth: 100, position: 'relative', top: '1px' }} value={product.averageRating} readOnly={true} itemStyles={starCustomStyle} /></span>
                         </h1>
 

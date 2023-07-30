@@ -16,7 +16,7 @@ const SearchByCategory = ({ products, search }: PageProps) => {
             <div className="container mt-9">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
 
-                    {products.slice(0, 6).map((item: IProduct, index: number) => <ProductCard
+                    {!products.length ? <div className='flex items-center justify-center h-[150px]'>No Product available</div> : products.map((item: IProduct, index: number) => <ProductCard
                         key={`products${index}`}
                         data={item}
                     />)}

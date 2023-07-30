@@ -20,7 +20,7 @@ const ProductReview = ({ product }: Props) => {
                         <div className="shadow p-4 rounded-lg bg-white">
                             <div className="mt-4 flex items-center gap-5">
 
-                                <div className='rounded-full border-2 w-max border-primary-300'>
+                                <div className='rounded-full border-2 border-primary-300 w-[20%]'>
                                     <Image src={data.image ? data.image : '/av.jpg'} width={40} height={30} alt={data.user} className='rounded-full' />
                                 </div>
 
