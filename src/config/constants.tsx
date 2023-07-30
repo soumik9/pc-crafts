@@ -3,6 +3,7 @@ import { ILink } from "./type";
 export const homeUrl: string = '/'
 export const pcBuildUrl: string = '/pc-build'
 export const logiinUrl: string = '/login'
+export const allProductsUrl: string = '/all-products'
 
 export const bdtSymbol: string = '৳';
 

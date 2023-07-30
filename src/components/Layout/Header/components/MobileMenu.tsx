@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { AiOutlineClose, AiOutlineDesktop, AiOutlineLogin } from 'react-icons/ai';
-import { homeUrl, logiinUrl } from "@/config/constants";
+import { allProductsUrl, homeUrl, logiinUrl } from "@/config/constants";
 import classNames from 'classnames';
 import CategoriesDropdown from "./CategoriesDropdown";
 import { FiChevronRight } from 'react-icons/fi'
@@ -46,6 +46,7 @@ const MobileMenu = ({ setShowSideNav }: Props) => {
 
                         <div className="flex flex-col px-[40px] space-y-4">
                             <Link href={homeUrl} className={classNames(linkCls)} onClick={() => setShowSideNav(false)}>Home</Link>
+                            <Link href={allProductsUrl} className={classNames(linkCls)} onClick={() => setShowSideNav(false)}>All Products</Link>
 
                             <div className="relative">
                                 <button

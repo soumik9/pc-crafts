@@ -46,9 +46,9 @@ const CatItemCard = ({ data, buildItems }: Props) => {
 
                     <div className={classNames(matchingBuildItems.length && 'mt-4')}>
                         {matchingBuildItems?.map((item: IProduct, index: number) => (
-                            <div key={`buildP${index}`} className={classNames('pl-10', index < matchingBuildItems.length - 1 && 'mb-3')}>
+                            <div key={`buildP${index}`} className={classNames('pl-1 md:pl-10', index < matchingBuildItems.length - 1 && 'mb-3')}>
 
-                                <div className='border p-2 pl-4 flex justify-between items-center rounded-md'>
+                                <div className='border p-2 md:pl-4 flex justify-between items-center rounded-md'>
                                     <div>
                                         <h2 className=' font-medium text-gray-600'>{item.name}</h2>
                                         <p className='font-semibold'> <span className='text-[20px]'>{bdtSymbol}</span> {item.price}</p>

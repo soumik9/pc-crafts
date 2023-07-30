@@ -1,4 +1,4 @@
-import { homeUrl, logiinUrl, pcBuildUrl } from '@/config/constants';
+import { allProductsUrl, homeUrl, logiinUrl, pcBuildUrl } from '@/config/constants';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import CategoriesDropdown from './components/CategoriesDropdown';
@@ -58,6 +58,7 @@ const Header: React.FC = () => {
                     <div className="hidden md:flex md:items-center space-x-10">
 
                         <Link href={homeUrl} className={classNames(linkCls)} onClick={() => setDropdownOpen(false)}>Home</Link>
+                        <Link href={allProductsUrl} className={classNames(linkCls)} onClick={() => setDropdownOpen(false)}>All Products</Link>
 
                         <div className="relative">
                             <button onClick={toggleDropdown} className={classNames(linkCls)}>Categories</button>

@@ -28,8 +28,8 @@ const PCBuild = ({ categories }: Props) => {
 
                 <div className="container mt-9">
 
-                    <div className='flex justify-between items-center'>
-                        <p className='text-error text-[18px] font-medium '>
+                    <div className='flex flex-col md:flex-row md:gap-5 justify-between items-center'>
+                        <p className='text-error text-[18px] font-medium mb-2 md:mb-0'>
                             This button will be disabled unless the user adds at least 5-6 of the mentioned components
                         </p>
 
@@ -38,13 +38,14 @@ const PCBuild = ({ categories }: Props) => {
                             disabled={buildItems.length < 6}
                             type='button'
                             onClick={handleCompleteBuild}
+                            classes=''
                         />
                     </div>
 
-                    <div className='flex justify-between mt-4'>
+                    <div className='flex items-center justify-between mt-6 md:mt-4'>
                         <p className='font-semibold'>Total items selected: <span className='text-primary-300 font-bold'>{buildItems.length}</span></p>
                         <p className='font-semibold'>Total: <span className='text-primary-300 font-bold'>
-                            <span className='text-[24px]'> {bdtSymbol}</span>
+                            <span> {bdtSymbol}</span>
                             {buildItems.reduce((acc, item) => acc + item.price, 0)}</span></p>
                     </div>
 
@@ -59,7 +60,7 @@ const PCBuild = ({ categories }: Props) => {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 
