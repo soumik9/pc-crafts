@@ -7,6 +7,8 @@ import React from 'react'
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
 import Link from 'next/link';
+import Button from '@/components/Button/Button';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 type Props = {
     data: IProduct;
@@ -53,6 +55,13 @@ const ProductCard = ({ data }: Props) => {
                                 <span className="">{data.price}</span>
                             </p>
                         </div>
+                    </div>
+
+                    <div className='mt-3.5'>
+                        <Button
+                            text={<div className='flex justify-center items-center gap-2'>Add To Builder <AiOutlineArrowRight className='relative top-[1px]' /></div>}
+                            classes='w-full'
+                        />
                     </div>
                 </div>
             </Link>

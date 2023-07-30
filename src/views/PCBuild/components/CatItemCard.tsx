@@ -1,5 +1,6 @@
 import Button from '@/components/Button/Button';
 import { ICategory } from '@/config/type'
+import { useRouter } from 'next/router';
 import React from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { BsJournalArrowUp } from 'react-icons/bs';
@@ -9,6 +10,9 @@ type Props = {
 }
 
 const CatItemCard = ({ data }: Props) => {
+
+    const router = useRouter();
+
     return (
         <div className="relative cursor-default">
             <div className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
@@ -23,6 +27,7 @@ const CatItemCard = ({ data }: Props) => {
 
                         <Button
                             text={<div className='flex items-center gap-2'>Choose <AiOutlineArrowRight className='relative top-[1px]' /></div>}
+                            onClick={() => router.push(`category/${data.slug}`)}
                         />
                     </div>
 
