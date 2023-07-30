@@ -8,6 +8,7 @@ import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css'
 import ProductKeyFeatures from './partials/ProductKeyFeatures';
 import ArcodionBtn from './components/ArcodionBtn';
+import ProductReview from './partials/ProductReview';
 
 type Props = {
     product: IProduct;
@@ -66,7 +67,7 @@ const ProductDetails = ({ product }: Props) => {
                     <div className="border-b py-4 border-gray-200">
                         <ArcodionBtn setShow={setShow2} show={show2} title='Reviews' />
                         <div className={"pt-4 text-base leading-normal pr-12 mt-4 text-gray-600 " + (show2 ? "block" : "hidden")} id="sect">
-                            If you have any questions on how to return your item to us, contact us.
+                            <ProductReview product={product} />
                         </div>
                     </div>
                 </div>

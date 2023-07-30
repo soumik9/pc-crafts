@@ -24,6 +24,7 @@ export interface IProduct {
 
 export interface IReview {
     user: string;
+    image?: string;
     rating: number;
     comment: string;
 }
