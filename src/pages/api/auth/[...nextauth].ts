@@ -9,6 +9,10 @@ export const authOptions = {
             clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET || '',
         })
     ],
+
+    pages: {
+        signIn: "/login"
+    }
 }
 
 export default NextAuth(authOptions) 
