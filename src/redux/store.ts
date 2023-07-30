@@ -6,7 +6,7 @@ export const store = configureStore({
         pcBuild: pcBuildSliceRed
     },
     devTools: process.env.NODE_ENV !== 'production',
-    middleware: (getDefaultMiddlewares) => getDefaultMiddlewares().concat()
+    // middleware: (getDefaultMiddlewares) => getDefaultMiddlewares().concat()
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -11,7 +11,7 @@ import Button from '@/components/Button/Button';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { addToPCBuild } from '@/redux/features/pcBuild/pcBuildSlice';
 import { useRouter } from 'next/router';
-import { useAppDispatch } from '@/hooks/helpers';
+import { useAppDispatch, useAppSelector } from '@/hooks/helpers';
 
 type Props = {
     data: IProduct;
@@ -22,11 +22,16 @@ const ProductCard = ({ data }: Props) => {
     // global
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const buildItems = useAppSelector((state) => state.pcBuild);
+
+    const isProductInBuild = buildItems.some((item) => item.name === data.name);
 
     // handler
     const handleAddToBuilder = () => {
-        dispatch(addToPCBuild(data));
-        router.push(pcBuildUrl);
+        if (!isProductInBuild) {
+            dispatch(addToPCBuild(data));
+            router.push(pcBuildUrl);
+        }
     };
 
     return (
@@ -76,9 +81,13 @@ const ProductCard = ({ data }: Props) => {
 
                     <div className='mt-3.5'>
                         <Button
-                            text={<div className='flex justify-center items-center gap-2'>Add To Builder <AiOutlineArrowRight className='relative top-[1px]' /></div>}
+                            text={<div className='flex justify-center items-center gap-2'>
+                                {isProductInBuild ? 'Already In Build' : 'Add To Builder'}
+                                < AiOutlineArrowRight className='relative top-[1px]' />
+                            </div>}
                             classes='w-full'
                             onClick={handleAddToBuilder}
+                            disabled={isProductInBuild}
                             type='button'
                         />
                     </div>
