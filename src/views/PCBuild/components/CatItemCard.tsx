@@ -28,6 +28,7 @@ const CatItemCard = ({ data }: Props) => {
                         <Button
                             text={<div className='flex items-center gap-2'>Choose <AiOutlineArrowRight className='relative top-[1px]' /></div>}
                             onClick={() => router.push(`category/${data.slug}`)}
+                            type='button'
                         />
                     </div>
 

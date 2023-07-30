@@ -1,21 +1,19 @@
 import { IProduct } from '@/config/type';
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 // Define a type for the slice state
-interface IPcBuild {
-    category: string | undefined;
-    product: IProduct | undefined;
-}
-
-const initialState: IPcBuild[] = [];
+const initialState: IProduct[] = [];
 
 const authSlice = createSlice({
     name: 'pcBuild',
     initialState,
     reducers: {
-
+        addToPCBuild: (state, action: PayloadAction<IProduct>) => {
+            console.log(action);
+            state.push(action.payload);
+        },
     }
 })
 
-export const { } = authSlice.actions;
+export const { addToPCBuild } = authSlice.actions;
 export default authSlice.reducer;

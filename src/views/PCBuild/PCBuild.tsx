@@ -4,12 +4,18 @@ import SectionTitle from '../Home/partials/SectionTitle';
 import CatItemCard from './components/CatItemCard';
 import Button from '@/components/Button/Button';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import { useAppSelector } from '@/hooks/helpers';
 
 interface Props {
     categories: ICategory[];
 }
 
 const PCBuild = ({ categories }: Props) => {
+
+    // global
+    const buildItems = useAppSelector((state) => state.pcBuild);
+    console.log(buildItems);
+
     return (
         <div>
             <div className='my-[50px]'>
@@ -24,6 +30,8 @@ const PCBuild = ({ categories }: Props) => {
 
                         <Button
                             text={<div className='flex items-center gap-2'>Complete Build <AiOutlineArrowRight className='relative top-[1px]' /></div>}
+                            disabled={buildItems.length < 6}
+                            type='button'
                         />
                     </div>
 
