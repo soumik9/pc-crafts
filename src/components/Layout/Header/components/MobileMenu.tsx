@@ -45,7 +45,7 @@ const MobileMenu = ({ setShowSideNav }: Props) => {
 
 
                         <div className="flex flex-col px-[40px] space-y-4">
-                            <Link href={homeUrl} className={classNames(linkCls)}>Home</Link>
+                            <Link href={homeUrl} className={classNames(linkCls)} onClick={() => setShowSideNav(false)}>Home</Link>
 
                             <div className="relative">
                                 <button
@@ -54,10 +54,8 @@ const MobileMenu = ({ setShowSideNav }: Props) => {
                                 >
                                     Categories <FiChevronRight />
                                 </button>
-                                {isDropdownOpen && <CategoriesDropdown />}
+                                {isDropdownOpen && <CategoriesDropdown setShowSideNav={setShowSideNav} />}
                             </div>
-
-                            <Link href="#" className={classNames(linkCls)}>Contact</Link>
                         </div>
 
                         <div className="px-[40px] mt-5">

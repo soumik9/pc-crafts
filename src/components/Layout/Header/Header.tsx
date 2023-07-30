@@ -61,7 +61,7 @@ const Header: React.FC = () => {
 
                         <div className="relative">
                             <button onClick={toggleDropdown} className={classNames(linkCls)}>Categories</button>
-                            {isDropdownOpen && <CategoriesDropdown />}
+                            {isDropdownOpen && <CategoriesDropdown setDropdownOpen={setDropdownOpen} />}
                         </div>
 
                         <Link href={logiinUrl} className={classNames(linkCls, 'flex gap-2 items-center group', session?.user?.email && 'hidden')} onClick={() => setDropdownOpen(false)}>
