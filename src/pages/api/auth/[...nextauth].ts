@@ -11,7 +11,7 @@ export const authOptions = {
     ],
 
     pages: {
-        signIn: `${process.env.NEXTAUTH_URL}/login`
+        signIn: `https://pc-crafts.vercel.app/login`
     }
 }
 
